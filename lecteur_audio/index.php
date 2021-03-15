@@ -11,6 +11,8 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  
   <link href="css/stylecss.css" rel="stylesheet">
 </head>
 <body style="margin-right: 15px;">
@@ -31,7 +33,7 @@ session_start();
     <div class="card-header">Register</div>
     <div class="card-body text-primary">
       <h5 class="card-title">Go sign up</h5><br>
-      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+      <center><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button></center>
     </div>
   </div>
   <div class="card border-danger mb-3" style="max-width: 18rem;" id="login">
