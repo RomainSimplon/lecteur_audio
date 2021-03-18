@@ -15,6 +15,7 @@ let type = document.querySelector('#type');
 
 
 
+
 let timer;
 let autoplay = 0;
 
@@ -23,45 +24,28 @@ let playing_song = false;
 
 let track = document.createElement('audio');
 
-//liste des musique
-// let i = [
-//     {
-//         name: "first song",
-//         path: "music/music1.mp3",
-//         img: "image/img1.jpg",
-//         singer: "first singer"
-//     },
-//     {
-//         name: "second song",
-//         path: "music/music2.mp3",
-//         img: "image/img2.png",
-//         singer: "second singer"
-//     },
-//     {
-//         name: "third song",
-//         path: "music/music3.mp3",
-//         img: "image/img3.jpg",
-//         singer: "third singer"
-//     }
-// ];
-
-// let data = new XMLHttpRequest();
-
-// data.open("GET",'http://php.loc/Lecteur_audio/json.php');
-
-// data.responseType = "json";
-
-// data.send();
-// console.log(data);
-
-
 fetch('http://php.loc/Lecteur_audio/json.php',{
     method:'get'
 }).then((response)=>{
     return response.json()
 }).then((data)=>{
     load_track(data, index_no);
-    
+
+
+    next.addEventListener('click', ()=>{
+        next_song(data)
+    })
+
+    //revenir à la musique d'avant
+    previous.addEventListener('click', ()=>{
+        previous_song(data)
+    })
+
+    auto_play.addEventListener('click',()=>{
+        autoplay_switch()
+        range_slider(data)
+    })
+
 })
 
 
@@ -71,7 +55,7 @@ fetch('http://php.loc/Lecteur_audio/json.php',{
 function load_track(data, index_no){
     clearInterval(timer);
     reset_slider()
-    console.log(data);
+    
     track.src = data[index_no].music;
     title.innerHTML = data[index_no].music_name;
     track_image.src = data[index_no].music_photo;
@@ -82,7 +66,7 @@ function load_track(data, index_no){
 
     total.innerHTML = data.length;
     present.innerHTML = index_no +1;
-    timer = setInterval(range_slider , 1000);
+    timer = setInterval(function(){range_slider(data)} , 1000);
     
    
 }
@@ -136,24 +120,24 @@ function next_song(data){
         playsong();
     }else{
         index_no = 0;
-        load_track(index_no);
+        load_track(data,index_no);
         playsong();
     }
 }
 
-
 //revenir à la musique d'avant
-function previous_song(){
+function previous_song(data){
     if (index_no > 0){
         index_no -= 1;
-        load_track(index_no);
+        load_track(data,index_no);
         playsong();
     }else{
         index_no = data.length -1;
-        load_track(index_no);
+        load_track(data,index_no);
         playsong();
     }
 }
+
 
 //volume
 function volume_change(){
@@ -181,7 +165,7 @@ function autoplay_switch(){
 }
 
 
-function range_slider(){
+function range_slider(data){
     let position = 0;
 
     if(!isNaN(track.duration)){
@@ -193,9 +177,7 @@ function range_slider(){
     if(track.ended){
         play.innerHTML = '<i class=fa fa-play"></i>'
         if (autoplay==1){
-            index_no += 1;
-            load_track(index_no);
-            playsong();
+           next_song(data)
         }
     }
 }

@@ -88,11 +88,11 @@
             
 
         <div class="middle">
-            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" 
+            <button id="pre"><i class="fa fa-step-backward" 
             aria-hidden="true"></i></button>
             <button onclick="justplay()" id="play"><i class="fa fa-play"
             aria-hidden="true"></i></button>
-            <button onclick="next_song()" id="next"><i class="fa fa-step-forward"
+            <button id="next"><i class="fa fa-step-forward"
             aria-hidden="true"></i></button>
         </div>
 
@@ -100,12 +100,19 @@
                 <input type="range" min="0" max="100" value="0" id="duration_slider" 
                 onchange="change_duration()">
             </div>
-                <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" 
+                <button id="auto">Auto play <i class="fa fa-circle-o-notch" 
                  aria-hidden="true"></i></button>
         </div>
                  
     </div>
+
+    <div class="bloc-comm"> 
+          <h4>Votre avis:</h4><input type="text" class="comm_area" name="comm" /><br>
+        </div>
+
     </div>
+
+
 
     <div class="right-bloc">
         <div class="bloc-music">

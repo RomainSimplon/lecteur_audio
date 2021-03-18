@@ -1,4 +1,3 @@
-
 /* CSS HEADER*/
 
 h2 {
@@ -76,27 +75,41 @@ margin-left: 2px;
     margin: 5vw;
 
 }
+.bloc-comm{
+    border: 3mm ridge rgba(162, 160, 163, 0.6);
+    margin-top: 15px;
+    height: 7vw;
+
+}
+.comm_area{
+    width: 25vw;
+    height: 2vw;
+    margin-left: 5px;
+    
+}
 
 .right-bloc{
-    margin-top: 5vw;
+    margin-top: 3vw;
 }
 
 .bloc-artiste{
 border: 1px solid white;
 color: white;
-height: 16vw;
+height: 21vw;
 margin: 3vw;
-width: 30vw;
+width: 35vw;
 text-align: center;
+overflow: auto;
 
 }
 .bloc-music{
     border: 1px solid white;
     color: white;
-    height: 16vw;
+    height: 21vw;
     margin: 3vw;
-    width: 30vw;
+    width: 35vw;
     text-align: center;
+    overflow: auto;
 
 }
 *{
@@ -236,6 +249,15 @@ text-transform: capitalize;
 color: #fff;
 font-size: 18px;
 }
+.right #type{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: capitalize;
+    color: #fff;
+    font-size: 26px;
+    }
 
 .right .duration{
 position: absolute;
