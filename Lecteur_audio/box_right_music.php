@@ -17,7 +17,7 @@ $sql1 = 'SELECT * FROM MUSIC ';
 
 <?php
 
-$music = $pdo->prepare("SELECT * FROM MUSIC ");
+$music = $pdo->prepare("SELECT * FROM MUSIC");
 
 
 ?>
@@ -28,7 +28,7 @@ $music = $pdo->prepare("SELECT * FROM MUSIC ");
         <thead>
             <tr>
                 <th>MUSIC</th>
-                
+                <th>ALBUM
                 <th>ARTIST</th>
                 <th>PLAY</th>
                 
@@ -43,7 +43,8 @@ $music = $pdo->prepare("SELECT * FROM MUSIC ");
                 echo '<td>' .$music['music_name']. '</td>';
                 echo '<td> '.$music['music_album']. '</td>';
                 echo '<td> '.$music['music_artist']. '</td>';
-                echo '<td> '.'<a href="#">PLAY</a>'. '</td>';
+                echo '<td> '.'<button onclick="justplay()" id="play"><i class="fa fa-play"
+                aria-hidden="true"></i></button>'. '</td>';
                 echo '</tr>';
             }  
         ?>

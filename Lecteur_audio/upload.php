@@ -52,6 +52,10 @@
                     Title: <input type="text" name="title" /><br>
                     Artist:  <input type="text" name="artist" /><br>
                     Album: <input type="text" name="album" /><br>
+                    <Select name="type">
+                    <option>ROCK</option>
+                    <option>HIP HOP</option>
+                    </Select>
                     <input type="file" name="photo" id="fileUpload">
                    Music en .mp3: <input type="file" name="chanson" accept=".mp3"><br>
             <input type="submit" value="upload"/>

@@ -11,19 +11,23 @@ if(empty($_POST["title"])) {
 $insertStatement = $pdo->prepare("
 
 INSERT INTO MUSIC
-(music_name,music_artist,music_album,music,music_photo)
+(music_name,music_artist,music_album,music_type,music,music_photo)
 values
-(?, ?, ?, ?, ?)
+(?, ?, ?, ?, ?, ? )
 ");
 
 $insertStatement->execute([
     $_POST["title"],
     $_POST["artist"],
     $_POST["album"],
-    "/music/".$_FILES['chanson']['name'],
-    "/image/". $_FILES["photo"]["name"]
+    $_POST["type"],
+    "music/".$_FILES['chanson']['name'],
+    "image/". $_FILES["photo"]["name"]
 
 ]);
+
+
+$insertMusic = $pdo->prepare("SELECT * FROM MUSIC");
     
     
     
@@ -114,6 +118,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Error: " . $_FILES["photo"]["error"];
     }
 }
+
+
+
+
+
+
+
 
 
 echo "<script type='text/javascript'>document.location.replace('../upload.php?message=Votre music a bien été ajouter');</script>";

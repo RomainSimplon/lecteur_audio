@@ -11,6 +11,8 @@ let auto_play = document.querySelector('#auto');
 let present = document.querySelector('#present');
 let total = document.querySelector('#total');
 let artist = document.querySelector('#artist');
+let type = document.querySelector('#type');
+
 
 
 let timer;
@@ -22,46 +24,68 @@ let playing_song = false;
 let track = document.createElement('audio');
 
 //liste des musique
-let All_song = [
-    {
-        name: "first song",
-        path: "music/music1.mp3",
-        img: "image/img1.jpg",
-        singer: "first singer"
-    },
-    {
-        name: "second song",
-        path: "music/music2.mp3",
-        img: "image/img2.png",
-        singer: "second singer"
-    },
-    {
-        name: "third song",
-        path: "music/music3.mp3",
-        img: "image/img3.jpg",
-        singer: "third singer"
-    }
-];
+// let i = [
+//     {
+//         name: "first song",
+//         path: "music/music1.mp3",
+//         img: "image/img1.jpg",
+//         singer: "first singer"
+//     },
+//     {
+//         name: "second song",
+//         path: "music/music2.mp3",
+//         img: "image/img2.png",
+//         singer: "second singer"
+//     },
+//     {
+//         name: "third song",
+//         path: "music/music3.mp3",
+//         img: "image/img3.jpg",
+//         singer: "third singer"
+//     }
+// ];
+
+// let data = new XMLHttpRequest();
+
+// data.open("GET",'http://php.loc/Lecteur_audio/json.php');
+
+// data.responseType = "json";
+
+// data.send();
+// console.log(data);
+
+
+fetch('http://php.loc/Lecteur_audio/json.php',{
+    method:'get'
+}).then((response)=>{
+    return response.json()
+}).then((data)=>{
+    load_track(data, index_no);
+    
+})
+
 
 //Les function
 
 //chargement de la music 
-function load_track(index_no){
+function load_track(data, index_no){
     clearInterval(timer);
     reset_slider()
-    track.src = All_song[index_no].path;
-    title.innerHTML = All_song[index_no].name;
-    track_image.src = All_song[index_no].img;
-    artist.innerHTML = All_song[index_no].singer;
+    console.log(data);
+    track.src = data[index_no].music;
+    title.innerHTML = data[index_no].music_name;
+    track_image.src = data[index_no].music_photo;
+    artist.innerHTML = data[index_no].music_artist;
+    type.innerHTML = data[index_no].music_type;
+    // type.innerHTML = data[index_no].music_type;
     track.load();
 
-    total.innerHTML = All_song.length;
+    total.innerHTML = data.length;
     present.innerHTML = index_no +1;
     timer = setInterval(range_slider , 1000);
     
    
 }
-load_track(index_no);
 
 //mute
 function mute_sound(){
@@ -104,10 +128,11 @@ function pausesong(){
 }
 
 //prochaine musique 
-function next_song(){
-    if (index_no < All_song.length - 1){
+function next_song(data){
+    console.log(data);
+    if (index_no < data.length - 1){
         index_no += 1;
-        load_track(index_no);
+        load_track(data, index_no);
         playsong();
     }else{
         index_no = 0;
@@ -124,7 +149,7 @@ function previous_song(){
         load_track(index_no);
         playsong();
     }else{
-        index_no = All_song.length -1;
+        index_no = data.length -1;
         load_track(index_no);
         playsong();
     }

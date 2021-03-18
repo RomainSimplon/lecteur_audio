@@ -40,7 +40,8 @@ $music = $pdo->prepare("SELECT * FROM MUSIC ");
                 echo '<tr>';
                 echo '<td>' .$music['music_name']. '</td>';
                 echo '<td> '.$music['music_album']. '</td>';
-                echo '<td> '.'<a href="#">PLAY</a>'. '</td>';
+                echo '<td> '.'<button onclick="justplay()" id="play"><i class="fa fa-play"
+                aria-hidden="true"></i></button>'. '</td>';
                 echo '</tr>';
             }  
         ?>

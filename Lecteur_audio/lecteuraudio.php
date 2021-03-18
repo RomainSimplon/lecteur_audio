@@ -58,15 +58,15 @@
     <div class="bloc-lecteur">
     <div class="main">
                 <p id="logo"><i class="fa fa-music" aria-hidden="true"></i>music</p>
-
+               
             <div class="left">
 
                 <img id="track_image">
                 <div class="volume">
-                <p id="volume_show">90</p>
+                <p id="volume_show">10</p>
                 <i class="fa fa-volume-up" aria-hidden="true" id="volume_icon" 
                 onclick="mute_sound()"></i>
-                <input type="range" min="0" max="100" value="90" onchange="volume_change()"  id="volume">
+                <input type="range" min="0" max="100" value="10" onchange="volume_change()"  id="volume">
             </div>
         </div>
 
@@ -80,6 +80,9 @@
                 <!-- song title --->
                 <p id="title">title.mp3</p>
                 <p id="artist">Artist name</p>
+                <p id="type">type</p>
+                <p id="id">id</p>
+                <!-- <p id="artist">Type</p> -->
                 <!-- middle part --->
                
             
