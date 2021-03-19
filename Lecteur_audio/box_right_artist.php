@@ -4,51 +4,51 @@ $sql1 = 'SELECT * FROM MUSIC ';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="lecteuraudio.css">
-    <title>Document</title>
-</head>
-<body>
-
 <?php
 
 $music = $pdo->prepare("SELECT * FROM MUSIC ");
 
+if (isset($_POST['searchMusic'])){
+    $searchMusic = (string) trim($searchMusic);
 
+$req_searchStatement = $pdo->prepare(
+            
+    "SELECT *
+    FROM MUSIC
+    WHERE music_name 
+    LIKE ?
+    OR music_artist
+    LIKE ?"
+);
+
+$req_searchStatement->execute([
+     $_POST["searchMusic"].'%',
+     $_POST["searchMusic"].'%'
+]); 
+$req_search = $req_searchStatement->fetchAll(); }
 ?>
 
-    <h1> Musiques de l'artiste </h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>MUSIC</th>
-                <th>ALBUM</th>
-                <th>PLAY</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        <?php 
-        
-        foreach($pdo->query($sql1) as $music)
-             {               
-                echo '<tr>';
-                echo '<td>' .$music['music_name']. '</td>';
-                echo '<td> '.$music['music_album']. '</td>';
-                echo '<td> '.'<button onclick="justplay()" id="play"><i class="fa fa-play"
-                aria-hidden="true"></i></button>'. '</td>';
-                echo '</tr>';
-            }  
-        ?>
-        </tbody>
-    </table>
-    
+
+<?php 
+
+if( isset($_POST['search'])&& $valid){
+
+    if(count($req_search)==0){
+        echo "Aucun resultat";
+    }
+    ?>
 
 
-</body>
-</html>
+            <?php foreach($req_search as $rs){ 
+            echo '<tr>';
+                echo '<td>'.$rs['music_name'].'</td>';
+                echo '<td>'.$rs['music_album'].'</td>';
+                echo '<td>'.$rs['music_artist'].'</td>';
+                echo '<td>'.$rs['music_type'].'</td>';
+            echo '</tr>';
+            } 
+            ?>
+
+<?php }
+
+?>

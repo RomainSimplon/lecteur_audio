@@ -35,33 +35,32 @@
    
 
 
- <h1>upload_music</h1>
-        <!-- <form action="process/insert_music.php" method="POST">
-            
-            Music en .mp3: <input type="file" name="photo" accept=".mp3"><br>
-            <input type="submit" value="upload"/>
-        </form> -->
-
-    
-   
-           
-                
+    <div class="title">
+ <h1>Ajouter une musique</h1>
+</div>
+ 
+<div class="formulaire">
                <form method="POST" action="./process/insert_music.php" enctype="multipart/form-data">
-               <!-- POST permet de garder des information ou ficher en binéaire dans la variable-->
-               <!-- encodage du fichier  et action = nom du site ou renvoyer le formulaire -->  
-                    Title: <input type="text" name="title" /><br>
-                    Artist:  <input type="text" name="artist" /><br>
-                    Album: <input type="text" name="album" /><br>
+                     <input type="text" name="title" placeholder="TITRE" /><br>
+                     <input type="text" name="artist" placeholder="ARTISTE"  /><br>
+                   <input type="text" name="album" placeholder="ALBUM"  /><br>
                     <Select name="type">
+                    <option></option>
                     <option>ROCK</option>
                     <option>HIP HOP</option>
-                    </Select>
-                    <input type="file" name="photo" id="fileUpload">
-                   Music en .mp3: <input type="file" name="chanson" accept=".mp3"><br>
-            <input type="submit" value="upload"/>
+                    <option>RAP</option>
+                    <option>CLASSIC</option>
+                    <option>JAZZ</option>
+                    <option>LATINO</option>
+                    <option>COUNTRY</option>
+                    <option>REGGAE</option>
+                    </Select><br>
+                Votre .jpg <input type="file" name="photo" id="fileUpload">
+                   Votre.mp3 <input type="file" name="chanson" accept=".mp3"><br>
+            <input class="send" type="submit" value="upload"/>
                </form>
+</div>   
     </div>
-   
    <?php
    include('footer.php');
    ?>

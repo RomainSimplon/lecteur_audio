@@ -1,5 +1,8 @@
 <?php
         session_start();
+        require_once(__DIR__."/pdo.php");
+        $sql1 = 'SELECT * FROM MUSIC';
+$music = $pdo->prepare("SELECT * FROM");
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +35,7 @@
   <h2><?php echo " ".$_SESSION['user_name']." "?></h2>
 
   <div class="container_icons">
-    <div class="settings"><a href="./upload_img.php"><i class="fa fa-cog"></i></a></li></div>
+    <div class="settings"><a href="./upload.php"><i class="fa fa-cog"></i></a></li></div>
     <div class="logout"><a href="login/process/logout.php"><i class="fa fa-sign-out"></i></a>
     </div>
   </div>
@@ -43,76 +46,91 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"></ul>
+  <?php
+require_once(__DIR__."/pdo.php");
+
+
+$nbmusiqueParPage = 5;
+    if (isset($_GET["page"]) && !empty($_GET["page"]) && $_GET["page"] > 0 && $_GET['page'] < 5) {
+            $pageCourante = intval($_GET["page"]);
+    } else {
+        $pageCourante = 1;
+    }
+    $depart = ($pageCourante -1)*$nbmusiqueParPage;
+
+    $sql1 = 'SELECT * FROM MUSIC LIMIT '.$depart.', '.$nbmusiqueParPage;
+    $nbmusiqueTotalReq = $pdo->prepare($sql1);
+    $nbmusiqueTotalReq-> execute();
+    $pagination = $nbmusiqueTotalReq->fetchAll(PDO::FETCH_ASSOC);
+
+if( !empty($_POST)){
+    extract($_POST);
+    $valid = true;
+
+if (isset($_POST['searchMusic'])){
+        $searchMusic = (string) trim($searchMusic);
+
+if(empty($searchMusic)){
+
+        $valid = false;
+        $message_er = "Mettre une recherche";
+}
+        
+        if($valid){    
+            $req_searchStatement = $pdo->prepare(
+            
+            "SELECT *
+            FROM MUSIC
+            WHERE music_name 
+            LIKE ?
+            OR music_artist
+            LIKE ?"
+);
+
+$req_searchStatement->execute([
+             $_POST["searchMusic"].'%',
+             $_POST["searchMusic"].'%'
+]);   
+        
+        }    
+        
+  
+    }
+}
+
+?>
     
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form method="post">
+        <div class="form-group">
+            <input class="form-control" type="search" name="searchMusic"  value="<?php if(isset($searchMusic)){ echo $searchMusic;}?>"placeholder="Recherche"/>
+            </br>
+            <input type="submit" class="btn btn-primary" value="Rechercher" name="search"/>
+        </div>
     </form>
     
   </div>
 </nav>
 <div class="global-container">
 
-    <div class="bloc-lecteur">
-    <div class="main">
-                <p id="logo"><i class="fa fa-music" aria-hidden="true"></i>music</p>
-               
-            <div class="left">
-
-                <img id="track_image">
-                <div class="volume">
-                <p id="volume_show">10</p>
-                <i class="fa fa-volume-up" aria-hidden="true" id="volume_icon" 
-                onclick="mute_sound()"></i>
-                <input type="range" min="0" max="100" value="10" onchange="volume_change()"  id="volume">
-            </div>
-        </div>
-
-            <div class="right">
-                <div class="show_song_no">
-                    <p id="present">1</p>
-                    <p>/</p>
-                    <p id="total">3</p>
-                </div>
-
-                <!-- song title --->
-                <p id="title">title.mp3</p>
-                <p id="artist">Artist name</p>
-                <p id="type">type</p>
-                <p id="id">id</p>
-                <!-- <p id="artist">Type</p> -->
-                <!-- middle part --->
-               
-            
-
-        <div class="middle">
-            <button id="pre"><i class="fa fa-step-backward" 
-            aria-hidden="true"></i></button>
-            <button onclick="justplay()" id="play"><i class="fa fa-play"
-            aria-hidden="true"></i></button>
-            <button id="next"><i class="fa fa-step-forward"
-            aria-hidden="true"></i></button>
-        </div>
-
-            <div class="duration">
-                <input type="range" min="0" max="100" value="0" id="duration_slider" 
-                onchange="change_duration()">
-            </div>
-                <button id="auto">Auto play <i class="fa fa-circle-o-notch" 
-                 aria-hidden="true"></i></button>
-        </div>
+    
+    <?php
+    include("lecteur.php");
+    ?>
                  
-    </div>
-
     <div class="bloc-comm"> 
-          <h4>Votre avis:</h4><input type="text" class="comm_area" name="comm" /><br>
+        <div class="comm">
+            <h4>Votre avis sur ce titre:</h4>
+            <input type="text" class="comm_area" name="comm" /><br>
         </div>
-
+        <div class="rating">
+          <a href="#5" title="Donner 5 étoiles">☆</a>
+          <a href="#4" title="Donner 4 étoiles">☆</a>
+          <a href="#3" title="Donner 3 étoiles">☆</a>
+          <a href="#2" title="Donner 2 étoiles">☆</a>
+          <a href="#1" title="Donner 1 étoile">☆</a>
+        </div>
     </div>
-
-
+    </div>
 
     <div class="right-bloc">
         <div class="bloc-music">
@@ -121,17 +139,35 @@
         </div>
 
         <div class="bloc-artiste">
+
+        <h1 class="searchh1"> Resultat de la recherche </h1>
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                <th style="background-color: grey">MUSIC</th>
+                <th style="background-color: grey">ALBUM</th>
+                <th style="background-color: grey">ARTIST</th>
+                <th style="background-color: grey">TYPE</th>
+                </tr>
+            </thead>
+            <tbody>
         <?php include("box_right_artist.php");
-        ?>  
+        ?>              
+        </tbody>
+        </table>
         </div>
     </div>
 
+
+</div>
+
+<div>
+    <?php 
+    include("footer.php");
+    ?> 
 </div>
 
 
-    <?php include("footer.php");
-    ?>
-
-<script src="js/main.js"></script>
+<script src="js/all.js"></script>
 </body>
 </html>

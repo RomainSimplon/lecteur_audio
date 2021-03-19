@@ -32,25 +32,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="#">ROCK</a></div>
+    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="Rock.php">ROCK</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
-    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="#">HIP-HOP</a></div>
+    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="HIP_HOP.php">HIP-HOP</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
-    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="#">RAP</a></div>
+    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="Rap.php">RAP</a></div>
   </div>
   <div class="row">
-    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="#">CLASSIC</a></div>
+    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="classic.php">CLASSIC</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
     <div class="case_favorite col-sm-12 col-md-4 col-lg-3"><a href="./lecteuraudio.php">Favoris</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
-    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="#">JAZZ</a></div>
+    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="jazz.php">JAZZ</a></div>
   </div>
   <div class="row">
-    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="#">Latino</a></div>
+    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="latino.php">Latino</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
-    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="#">Country</a></div>
+    <div class="case col-sm-12 col-md-4 col-lg-3"><a href="country.php">Country</a></div>
     <div class="caseclear col-sm-12 col-md-1 col-lg-1"></div>
-    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="#">Reggae</a></div>
+    <div class="case col-sm-12 col-md-6 col-lg-3"><a href="reggae.php">Reggae</a></div>
   </div>
 </div>
 

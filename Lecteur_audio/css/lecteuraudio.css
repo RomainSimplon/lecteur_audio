@@ -1,7 +1,11 @@
 /* CSS HEADER*/
+body{
+    font-family: Jazz LET, fantasy	;
+}
 
 h2 {
     color: white;
+    font-family: Jazz LET, fantasy	;
 }
 
 img {
@@ -13,12 +17,16 @@ margin-left: 1vw;
     display: flex;
     justify-content: space-between;
 }
+.bg-dark {
+   
+    display: flex;
+    justify-content: space-between;
+}
 
 .container_header{
     display: flex;
     align-self: center;
-    margin-left: 25%;
-   
+    
 
 }
 .container_icons{
@@ -32,13 +40,24 @@ color: rgb(152, 28, 177);
 margin-left: 2px;
 }
 /*search icon */
-
+.btn-primary {
+    color: #fff;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(27,51,161,1) 25%, rgba(255,60,231,1) 70%);
+    border: none;
+}
+.btn-primary:hover {
+    color: #fff;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(27,51,161,1) 25%, rgba(255,60,231,1) 70%);
+    border: solid 1px white;
+}
 .btn-outline-success{
     border-color: blue;
 }
 
 .btn:not(:disabled):not(.disabled){
-    color: rgb(174, 24, 204);
+    color: rgb(252, 252, 252);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled):active{
@@ -76,17 +95,67 @@ margin-left: 2px;
 
 }
 .bloc-comm{
-    border: 3mm ridge rgba(162, 160, 163, 0.6);
+    border: 3px solid rgb(7, 105, 233);
+    border-radius: 10px;
+    position: relative;
     margin-top: 15px;
-    height: 7vw;
-
+    height: 9vw;
+    display: flex;
+    flex-direction: row;
 }
+.bloc-comm h4{
+margin-top: 5px;
+margin-left: 10px;
+}
+
+.bloc-comm:before {
+    position: absolute;
+    display: block;
+    content: '';
+    border: 3px solid rgb(234, 2, 255);
+    border-radius: 7px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
 .comm_area{
     width: 25vw;
-    height: 2vw;
-    margin-left: 5px;
+    height: 4vw;
+    margin-left: 10px;
+    position: absolute;
+   
     
 }
+input.comm_area{
+
+    z-index: 1;
+    
+}
+.rating {
+    direction: rtl;
+    margin-top: 3vw;
+    margin-left: 8vw;
+    z-index: 1;
+ }
+ .rating a {
+     
+    color: rgb(234, 2, 255);
+    text-decoration: none;
+    font-size: 2em;
+    transition: color .4s;
+ }
+ .rating a:hover,
+ .rating a:focus,
+ .rating a:hover ~ a,
+ .rating a:focus ~ a {
+    color: rgb(7, 105, 233);
+    cursor: pointer;
+ }
+ .commlist{
+     border: 1px solid white;
+ }
 
 .right-bloc{
     margin-top: 3vw;
@@ -95,7 +164,7 @@ margin-left: 2px;
 .bloc-artiste{
 border: 1px solid white;
 color: white;
-height: 21vw;
+height: 13vw;
 margin: 3vw;
 width: 35vw;
 text-align: center;
@@ -105,7 +174,7 @@ overflow: auto;
 .bloc-music{
     border: 1px solid white;
     color: white;
-    height: 21vw;
+    height: 30vw;
     margin: 3vw;
     width: 35vw;
     text-align: center;
@@ -154,7 +223,6 @@ flex-direction: column;
 }
 
 .left img{
-height: 300px;
 width: 93%;
 border-radius: 15px;
 box-shadow: 1px 0px 20px 12px rgba(240,240,240,0.2);
@@ -239,6 +307,10 @@ transform: translateX(-50%);
 text-transform: capitalize;
 color: #fff;
 font-size: 20px;
+display: flex;
+flex-direction: column;
+width: 15vw;
+text-align: center;
 }
 .right #artist{
 position: absolute;
@@ -248,16 +320,19 @@ transform: translateX(-50%);
 text-transform: capitalize;
 color: #fff;
 font-size: 18px;
+width: 20vw;
+text-align: center;
+
 }
 .right #type{
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-transform: capitalize;
-    color: #fff;
-    font-size: 26px;
-    }
+position: absolute;
+top: 3vw;
+left: 11vw;
+transform: translateX(-50%);
+text-transform: capitalize;
+color: #fff;
+font-size: 26px;
+}
 
 .right .duration{
 position: absolute;
@@ -286,14 +361,37 @@ padding: 10px 14px;
 background: rgba(245,245,245,0,2);
 outline: none;
 border-radius: 10px;
-
 }
+
+.form-group{
+display: flex;
+flex-direction: row;
+padding: 10px;
+}
+
+.form-control{
+margin-right: 10px;
+}
+
 .right #auto i{
 margin-left: 8px;
-
+}
+.searchh1{
+    border: 1px solid grey;
+    margin-bottom: 0;
 }
 #play{
 background: #FF8A65;
+}
+.table #play{
+    background: #FF8A65;
+    border-radius: 10px;
+    height: 22px;
+    
+}
+.table td{
+
+    justify-content: center;
 }
 .right button:hover{
 background: #FF8A65;
