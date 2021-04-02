@@ -454,3 +454,11 @@ color: white;
 td {
     color: white;
 }
+
+#playId{
+    background-color: #FF8A65;
+    border-radius: 10px;
+    height: 25px;
+    width: 22px;
+
+}
